@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="cmm/layout">
+
+<th:block layout:fragment="f-title">main</th:block>
+
+<section layout:fragment="f-content">
+    <div class="container">
+        <div class="d-title">
+            <h2>thymeleaf tutorial 과정</h2>
+        </div>
+        <div class="d-content">
+            <div class="row">
+                <ul>
+                    <li>thymeleaf 관련 configuration 설정하기</li>
+                    <li>thymeleaf로 웹 페이지 구성하기</li>
+                    <li>JSP vs thymeleaf 비교하기</li>
+                    <li>thymeleaf layout 구성하기</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

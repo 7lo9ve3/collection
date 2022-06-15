@@ -1,0 +1,72 @@
+
+
+spring:
+  # DB(DB 설정 안하고 JPA 설정부터 하면 에러뜸)
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://127.0.0.1:3306/7lo?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Seoul"
+    username: root
+    password: 1234
+    hikari:
+      auto-commit: false
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: pool-7lo
+  # JPA 설정
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        hbm2ddl.auto: update
+    generate-ddl: false
+    open-in-view: false
+  # 시큐리티 설정
+  security:
+    user:
+      name: admin
+      password: admin
+  # json 설정
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Seoul
+  # 타임리프 설정
+  mvc:
+    static-path-pattern: /static/**   #정적 파일로 인식할 prefix 패턴..?;
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8   #인코딩값 설정
+    check-template-location: true
+    prefix: classpath:/templates/   #기본 문서 경로
+    suffix: .html   #자동으로 확장자를 붙여줌
+    cache: false   #타임리프 템플릿 문서의 캐시 사용 유무 설정. 테스트에선 false하고 실서버에서는 true로 설정하는 것을 권장
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/   #정적파일위치
+      cache:
+        period: 0   #정적파일의 캐시 유효기간
+  # MyBatis 설정
+mybatis:
+  type-aliases-package: com.example.collection.mapper    #Mapper.java 파일이 위치한 경로
+  mapper-locations: mapper/*.xml      #Mapper.xml 파일이 위치한 경로
+# 서버 설정
+server:
+  port: 9030
+  servlet:
+    context-path: /
+# 로딩파일 설정
+logging:
+  exception-conversion-word: '%wEx'
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %clr(${LOG_LEVEL_PATTERN:-%5p}){green} %clr(${PID:- }){magenta} %clr(%-40.40logger{39}){cyan} %clr(: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}){faint}'
+  level:
+    web: debug
+
+
+
